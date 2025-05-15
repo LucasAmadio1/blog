@@ -1,13 +1,8 @@
-import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { ActiveLink } from '../active-link/active-link'
 import { Button } from '../ui/button'
 
 export function Header() {
-  const { pathname } = useRouter()
-  const isHomePage = pathname === '/'
-  const isBlogPage = pathname.startsWith('/blog')
-
   return (
     <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-background-95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -15,27 +10,13 @@ export function Header() {
           <Link href="/">Logo</Link>
 
           <nav className="flex items-center gap-6">
-            <Link
-              href="/"
-              className={cn(
-                'text-sm font-medium transition-colors duration-150 hover:text-blue-500',
-                isHomePage ? 'text-blue-500' : 'text-muted-foreground'
-              )}
-            >
-              Início
-            </Link>
+            <ActiveLink href="/">Início</ActiveLink>
 
-            <Link
-              href="/blog"
-              className={cn(
-                'text-sm font-medium transition-colors duration-150 hover:text-blue-500',
-                isBlogPage ? 'text-blue-500' : 'text-muted-foreground'
-              )}
-            >
-              Blog
-            </Link>
+            <ActiveLink href="/blog">Blog</ActiveLink>
 
-            <Button variant="secondary">Começar</Button>
+            <Button variant="secondary" asChild>
+              <Link href="/comecar">Começar</Link>
+            </Button>
           </nav>
         </div>
       </div>
